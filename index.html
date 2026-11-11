@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sick Ink | Custom tattoos in Portland</title>
+<title>Slick Ink | Custom tattoos in Portland</title>
 <meta name="description" content="Custom black and grey, fine line and brushstroke tattoos by Marco Vale in Portland. Send your idea through the consultation form.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +14,8 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="bar">
-  <!-- When the logo arrives: <a class="brand" href="#top"><img src="logo.jpg" alt="Sick Ink" height="40"></a> -->
-  <a class="brand" href="#top">Sick Ink</a>
+  <!-- When the logo arrives: <a class="brand" href="#top"><img src="logo.jpg" alt="Slick Ink" height="40"></a> -->
+  <a class="brand" href="#top">Slick Ink</a>
   <button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav id="nav" class="nav" aria-label="Main">
     <a href="#work">Work</a>
@@ -29,13 +29,12 @@
 
 <main id="main">
   <section class="hero">
-    <h1>Sick Ink</h1>
+    <h1>Slick Ink</h1>
     <div class="hero-grid">
       <div>
-        <p class="lead">Custom tattoos by Marco Vale in Portland. Send your idea with the consultation form, or message the artist directly on Signal.</p>
+        <p class="lead">Custom tattoos by Marco Vale in Portland. Send your idea with the consultation form and the artist will reply to you directly.</p>
         <div class="row">
           <a class="btn" href="#consult">Start a consultation</a>
-          <a class="btn ghost signal" href="#consult" target="_blank" rel="noopener">Message on Signal</a>
         </div>
       </div>
       <button class="tile wide hero-tile" type="button"><img src="shop-counter.webp" alt="The studio counter with a skull display, red light strip and the studio sign" width="651" height="726"></button>
@@ -68,7 +67,7 @@
     <button class="tile wide" type="button"><img src="artist-at-work.webp" alt="The artist tattooing a client in the studio" width="750" height="555" loading="lazy"></button>
     <div>
       <h2>The artist</h2>
-      <p>Marco Vale has tattooed for twelve years and opened Sick Ink to work one-on-one with clients. Known for black and grey realism, fine line work and ink-wash brushstroke pieces, every design is drawn from scratch.</p>
+      <p>Marco Vale has tattooed for twelve years and opened Slick Ink to work one-on-one with clients. Known for black and grey realism, fine line work and ink-wash brushstroke pieces, every design is drawn from scratch.</p>
       <p>Each project starts with a conversation about your idea, the placement and how the tattoo will age.</p>
     </div>
   </section>
@@ -90,7 +89,7 @@
     <h2>How it works</h2>
     <ol class="steps">
       <li><h3>Share your idea</h3><p>Fill in the consultation form with your idea, placement and size.</p></li>
-      <li><h3>Hear back</h3><p>The artist replies using the contact detail you gave. Send any reference images on Signal.</p></li>
+      <li><h3>Hear back</h3><p>The artist replies using the contact detail you gave and can ask for reference images then.</p></li>
       <li><h3>Approve the design</h3><p>You and the artist agree on the design, price and date before anything starts.</p></li>
       <li><h3>Get tattooed</h3><p>Arrive rested and fed. Aftercare instructions come with every session.</p></li>
     </ol>
@@ -99,10 +98,10 @@
   <section id="faq" class="sec faq">
     <h2>Questions</h2>
     <details><summary>How do I book?</summary><p>Start with the consultation form. It goes straight to the artist, who replies using the contact detail you gave.</p></details>
-    <details><summary>Do you take walk-ins?</summary><p>Walk-ins are accepted when there is space. Messaging on Signal first is the safest way to get a time.</p></details>
+    <details><summary>Do you take walk-ins?</summary><p>Walk-ins are accepted when there is space. Sending a consultation request first is the safest way to get a time.</p></details>
     <details><summary>How much does a tattoo cost?</summary><p>Price depends on size, detail and time. You get a quote after the consultation, before you commit.</p></details>
     <details><summary>Do I need to pay a deposit?</summary><p>A deposit holds your date and counts toward the final price.</p></details>
-    <details><summary>Can I get a cover-up?</summary><p>Yes. Send clear photos of the existing tattoo in Signal and the artist will tell you what is realistic.</p></details>
+    <details><summary>Can I get a cover-up?</summary><p>Yes. Describe the existing tattoo in the form. The artist will ask for clear photos when they reply and tell you what is realistic.</p></details>
   </section>
 
   <section id="consult" class="sec">
@@ -152,7 +151,7 @@
         <input id="dates" name="dates">
       </div>
       <div class="hp" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
-      <p class="note">Reference images: after you send this, share them with the artist on Signal.</p>
+      <p class="note">Reference images: the artist will ask for them when they reply.</p>
       <p class="err form-err" id="form-err" role="alert"></p>
       <div><button class="btn" id="send" type="submit">Send consultation request</button></div>
     </form>
@@ -160,30 +159,16 @@
     <div id="sent" hidden>
       <h3 id="sent-h" tabindex="-1">Consultation request sent</h3>
       <p id="sent-msg"></p>
-      <p class="note">Got reference images? Send them to the artist on Signal.</p>
       <div class="row">
-        <a class="btn signal" href="#consult" target="_blank" rel="noopener">Send images on Signal</a>
         <button id="again" class="btn ghost" type="button">Send another request</button>
       </div>
       <dl class="recap" id="recap"></dl>
-    </div>
-
-    <div id="result" hidden>
-      <h3 id="result-h" tabindex="-1">Send it on Signal instead</h3>
-      <p class="note">Your request couldn’t be emailed, so nothing has been sent yet. Copy it and paste it into Signal, or tap Send consultation request to try again.</p>
-      <textarea id="summary" rows="10" readonly aria-label="Inquiry summary"></textarea>
-      <div class="row">
-        <button id="copy" class="btn" type="button">Copy inquiry</button>
-        <a class="btn ghost signal" href="#consult" target="_blank" rel="noopener">Open Signal</a>
-      </div>
-      <p id="copy-msg" role="status"></p>
     </div>
   </section>
 </main>
 
 <footer>
-  <p>&copy; 2026 Sick Ink. 123 Main Street, Suite 4, Portland.</p>
-  <p><a class="signal" href="#consult" target="_blank" rel="noopener">Message on Signal</a></p>
+  <p>&copy; 2026 Slick Ink. 123 Main Street, Suite 4, Portland.</p>
   <p><a href="#top">Back to top</a></p>
 </footer>
 

@@ -1,15 +1,10 @@
 (() => {
-  // The artist's Signal contact link (the only place it is set).
-  const SIGNAL_URL = 'https://signal.me/#eu/XoJKzqusmKxHkSmdQBsGkTcChj3USt-m9j70B_EzxGWn_Fz4QVdPm4emWMV2n8cM';
-
   // Web3Forms access key: emails every consultation request to the artist.
   // Get one free at https://web3forms.com: enter Sickinkstudioss@gmail.com and the key arrives in that inbox.
   // The key is meant to be public: it can only deliver to that one inbox.
   const ACCESS_KEY = '26609654-d2db-40b3-bd74-679f06c8ae21';
 
   const $ = (s, r = document) => r.querySelector(s);
-
-  document.querySelectorAll('a.signal').forEach(a => { a.href = SIGNAL_URL; });
 
   // Mobile menu
   const menu = $('.menu'), nav = $('#nav');
@@ -34,7 +29,7 @@
   });
 
   // Consultation form
-  const form = $('#form'), intro = $('#intro'), result = $('#result'), summary = $('#summary'), msg = $('#copy-msg');
+  const form = $('#form'), intro = $('#intro');
   const sent = $('#sent'), send = $('#send'), formErr = $('#form-err');
   const sendLabel = send.textContent;
   let sending = false;
@@ -70,8 +65,8 @@
     };
   };
 
-  // The same text goes in the email and, if email fails, in the Signal fallback
-  const buildSummary = (d, forSignal) => {
+  // The text of the email the artist receives
+  const buildSummary = d => {
     const line = (label, val) => val ? `${label}: ${val}` : '';
     return [
       'Hi, I would like a tattoo consultation.',
@@ -82,8 +77,7 @@
       line('Placement', d.placement),
       line('Size', d.size),
       line('Budget', d.budget),
-      line('Availability', d.dates),
-      forSignal ? 'I will send reference images here.' : 'Reference images: to be sent on Signal.'
+      line('Availability', d.dates)
     ].filter(Boolean).join('\n');
   };
 
@@ -102,11 +96,11 @@
         body: JSON.stringify({
           access_key: ACCESS_KEY,
           subject: `New consultation request from ${d.name}`,
-          from_name: 'Sick Ink website',
+          from_name: 'Slick Ink website',
           name: d.name,
           // A real email address becomes the Reply-To, so the artist can answer straight from the inbox
           ...(isEmail(d.contact) ? { email: d.contact } : {}),
-          message: buildSummary(d, false)
+          message: buildSummary(d)
         }),
         signal: ctrl.signal
       });
@@ -142,17 +136,13 @@
     });
     form.hidden = true;
     intro.hidden = true;
-    result.hidden = true;
     sent.hidden = false;
     scrollTo(sent);
     $('#sent-h').focus({ preventScroll: true });
   }
 
-  function showFallback(d) {
-    formErr.textContent = 'Your request didn’t send. Check your connection and try again, or send it on Signal instead.';
-    summary.value = buildSummary(d, true);
-    msg.textContent = '';
-    result.hidden = false;
+  function showError() {
+    formErr.textContent = 'Your request didn’t send. Check your connection and try again.';
   }
 
   form.addEventListener('submit', async e => {
@@ -169,7 +159,7 @@
     setSending(true);
     const ok = await sendEmail(data);
     setSending(false);
-    if (ok) showSent(data); else showFallback(data);
+    if (ok) showSent(data); else showError();
   });
 
   // Start a fresh request
@@ -181,28 +171,9 @@
     });
     formErr.textContent = '';
     sent.hidden = true;
-    result.hidden = true;
     form.hidden = false;
     intro.hidden = false;
     scrollTo($('#consult'));
     form.elements.name.focus({ preventScroll: true });
-  });
-
-  // Signal fallback: copy with a fallback for browsers that block the clipboard API
-  async function copyText() {
-    try {
-      await navigator.clipboard.writeText(summary.value);
-      return true;
-    } catch {
-      summary.focus();
-      summary.select();
-      summary.setSelectionRange(0, summary.value.length);
-      try { return document.execCommand('copy'); } catch { return false; }
-    }
-  }
-  $('#copy').addEventListener('click', async () => {
-    msg.textContent = (await copyText())
-      ? 'Copied. Now open Signal and paste it.'
-      : 'Copying didn’t work. The text is selected: press and hold it, choose Copy, then paste it in Signal.';
   });
 })();
